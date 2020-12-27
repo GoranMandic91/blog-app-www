@@ -18,7 +18,7 @@ interface PostCardProps {
 
 export default function PostCard({ id, title, content, numOfComments }: PostCardProps) {
   return (
-    <Card className="Card">
+    <Card className="Card" raised>
       <CardContent >
         <Typography gutterBottom variant="h5" component="h2">
           {title}

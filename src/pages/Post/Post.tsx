@@ -1,17 +1,20 @@
 import React, { useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import { Link, useParams } from "react-router-dom";
+import { Comment, CommentsActionTypes } from '../../store/comments/types';
+import CommentCard from '../../components/CommentCard'
 
-// interface PostProps {
-//   id: number;
-// }
+interface PostProps {
+  comments: Comment[];
+  fetchComments(id: string): CommentsActionTypes;
+}
 
-function Post() {
+function Post({ comments, fetchComments }: PostProps) {
   let { id } = useParams<{ id: string }>();
 
   useEffect(() => {
-    console.log('ID changed: ', id)
-  }, [id]);
+    fetchComments(id);
+  }, [id, fetchComments]);
 
   return (
     <>
@@ -21,6 +24,16 @@ function Post() {
           Back to all posts
         </Button>
       </Link>
+      {
+        comments.map((comment: Comment) =>
+          <CommentCard
+            key={comment.id}
+            id={comment.id}
+            name={comment.name}
+            text={comment.text}
+          />
+        )
+      }
     </>
   );
 }

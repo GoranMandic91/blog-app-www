@@ -1,14 +1,16 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getPosts } from '../../store/posts/selectors';
+import { fetchCommentsRequest } from '../../store/comments/actions';
+import { getComments } from '../../store/comments/selectors';
 import { RootState } from '../../store/reducers';
 import Post from './Post';
 
 const PostConnected = connect(
   (state: RootState) => ({
-    post: getPosts(state)
+    comments: getComments(state)
   }),
   (dispatch) => bindActionCreators({
+    fetchComments: fetchCommentsRequest
   }, dispatch),
 )(Post);
 

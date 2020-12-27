@@ -4,4 +4,9 @@ export default class postsAPI {
   static getAll() {
     return connection.get('posts');
   }
+
+  static getAllComments(id: string) {
+    return connection.get(`posts/${id}/comments`);
+  }
+
 }
