@@ -1,7 +1,11 @@
-.Card {
+.CommentCard {
   margin: 5px auto;
-  min-width: 600px;
-  max-width: 800px;
+  width: 600px;
+  background: gray;
+}
+
+.CommentCard .Content {
+  background: rgba(159, 163, 167, 0.256);
 }
 
 .FloatRight {

@@ -5,9 +5,11 @@ import Typography from '@material-ui/core/Typography';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import Badge from '@material-ui/core/Badge';
-import ChatTwoToneIcon from '@material-ui/icons/ChatTwoTone';
+import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined';
+import AddCommentOutlinedIcon from '@material-ui/icons/AddCommentOutlined';
 import './index.css';
 import { Link } from "react-router-dom";
+import IconButton from '@material-ui/core/IconButton';
 
 interface PostCardProps {
   id: number;
@@ -19,14 +21,19 @@ interface PostCardProps {
 
 export default function PostCard({ id, title, content, numOfComments, hidden }: PostCardProps) {
   return (
-    <Card className="Card" raised>
+    <Card className="PostCard" raised>
       <CardContent >
         <Typography gutterBottom variant="h5" component="h2">
           {title}
           {!hidden &&
             <Badge className="FloatRight" badgeContent={numOfComments} color="primary" showZero>
-              <ChatTwoToneIcon color="primary" />
+              <ChatOutlinedIcon color="primary" />
             </Badge>
+          }
+          {hidden &&
+            <IconButton className="FloatRight" color="primary" size="small">
+              <AddCommentOutlinedIcon />
+            </IconButton>
           }
         </Typography>
         <Typography variant="body2" color="textSecondary" component="p">

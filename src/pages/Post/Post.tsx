@@ -26,6 +26,7 @@ function Post({ post, comments, fetchPost, fetchComments }: PostProps) {
       <Button component={Link} to="/posts" variant="contained" color="primary">
         Back to all posts
       </Button>
+
       {post &&
         <PostCard
           key={post.id}

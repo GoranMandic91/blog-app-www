@@ -1,7 +1,6 @@
-.Card {
+.PostCard {
   margin: 10px auto;
-  min-width: 500px;
-  max-width: 800px;
+  width: 800px;
 }
 
 .FloatRight {
