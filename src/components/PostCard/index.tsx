@@ -7,14 +7,16 @@ import Button from '@material-ui/core/Button';
 import Badge from '@material-ui/core/Badge';
 import ChatTwoToneIcon from '@material-ui/icons/ChatTwoTone';
 import './index.css';
+import { Link } from "react-router-dom";
 
 interface PostCardProps {
+  id: number;
   title: string;
   content: string;
   numOfComments: number;
 }
 
-export default function PostCard({ title, content, numOfComments }: PostCardProps) {
+export default function PostCard({ id, title, content, numOfComments }: PostCardProps) {
   return (
     <Card className="Card">
       <CardContent >
@@ -29,9 +31,11 @@ export default function PostCard({ title, content, numOfComments }: PostCardProp
         </Typography>
       </CardContent>
       <CardActions className="FloatRight">
-        <Button variant="contained" size="small" color="primary">
-          Open post
-        </Button>
+        <Link to={`/posts/${id}`}>
+          <Button variant="contained" size="small" color="primary">
+            Open post
+          </Button>
+        </Link>
       </CardActions>
     </Card>
   );

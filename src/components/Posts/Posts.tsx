@@ -14,6 +14,7 @@ function Posts({ posts }: PostsProps) {
         posts.map((post: Post) =>
           <PostCard
             key={post.id}
+            id={post.id}
             title={post.title}
             content={post.content}
             numOfComments={post.numOfComments}
