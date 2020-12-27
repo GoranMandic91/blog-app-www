@@ -1,0 +1,9 @@
+.Card {
+  margin: 10px auto;
+  min-width: 500px;
+}
+
+.FloatRight {
+  float: right;
+}
+
