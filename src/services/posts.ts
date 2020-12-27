@@ -9,4 +9,7 @@ export default class postsAPI {
     return connection.get(`posts/${id}/comments`);
   }
 
+  static getPost(id: string) {
+    return connection.get(`posts/${id}`);
+  }
 }

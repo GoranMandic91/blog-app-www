@@ -13,30 +13,33 @@ interface PostCardProps {
   id: number;
   title: string;
   content: string;
-  numOfComments: number;
+  numOfComments?: number;
+  hidden?: boolean;
 }
 
-export default function PostCard({ id, title, content, numOfComments }: PostCardProps) {
+export default function PostCard({ id, title, content, numOfComments, hidden }: PostCardProps) {
   return (
     <Card className="Card" raised>
       <CardContent >
         <Typography gutterBottom variant="h5" component="h2">
           {title}
-          <Badge className="FloatRight" badgeContent={numOfComments} color="primary" showZero>
-            <ChatTwoToneIcon color="primary" />
-          </Badge>
+          {!hidden &&
+            <Badge className="FloatRight" badgeContent={numOfComments} color="primary" showZero>
+              <ChatTwoToneIcon color="primary" />
+            </Badge>
+          }
         </Typography>
         <Typography variant="body2" color="textSecondary" component="p">
           {content}
         </Typography>
       </CardContent>
-      <CardActions className="FloatRight">
-        <Link to={`/posts/${id}`}>
-          <Button variant="contained" size="small" color="primary">
+      {!hidden &&
+        <CardActions className="FloatRight">
+          <Button component={Link} to={`/posts/${id}`} variant="contained" color="primary">
             Open post
           </Button>
-        </Link>
-      </CardActions>
+        </CardActions>
+      }
     </Card>
   );
 }
