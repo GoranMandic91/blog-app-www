@@ -1,12 +1,12 @@
 import React from 'react';
 import { Post } from '../../store/posts/types';
-import PostCard from '../PostCard';
+import PostCard from '../../components/PostCard';
 
 export interface PostsProps {
   posts: Post[];
 }
 
-function Posts({ posts }: PostsProps) {
+function Home({ posts }: PostsProps) {
 
   return (
     <div>
@@ -25,4 +25,4 @@ function Posts({ posts }: PostsProps) {
   );
 }
 
-export default Posts;
+export default Home;

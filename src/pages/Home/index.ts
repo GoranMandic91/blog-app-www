@@ -2,13 +2,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getPosts } from '../../store/posts/selectors';
 import { RootState } from '../../store/reducers';
-import Posts from './Posts';
+import Home from './Home';
 
-const PostsConnected = connect(
+const HomeConnected = connect(
   (state: RootState) => ({
     posts: getPosts(state)
   }),
   (dispatch) => bindActionCreators({}, dispatch),
-)(Posts);
+)(Home);
 
-export default PostsConnected;
+export default HomeConnected;
