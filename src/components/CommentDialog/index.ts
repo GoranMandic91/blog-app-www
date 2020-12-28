@@ -1,19 +1,22 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { closeCreateCommentDialog, createCommentRequest } from '../../store/comments/actions';
+import { closeCommentDialog, createCommentRequest, updateCommentRequest } from '../../store/comments/actions';
 import { isDialogOpen } from '../../store/comments/selectors';
 import { getPostId } from '../../store/post/selectors';
+import { getComment } from '../../store/comments/selectors';
 import { RootState } from '../../store/reducers';
 import CommentDialog from './CommentDialog';
 
 const CommentDialogConnected = connect(
   (state: RootState) => ({
     isOpen: isDialogOpen(state),
-    postId: getPostId(state)
+    postId: getPostId(state),
+    comment: getComment(state)
   }),
   (dispatch) => bindActionCreators({
-    closeDialog: closeCreateCommentDialog,
-    createComment: createCommentRequest
+    closeDialog: closeCommentDialog,
+    createComment: createCommentRequest,
+    updateComment: updateCommentRequest
   }, dispatch),
 )(CommentDialog);
 

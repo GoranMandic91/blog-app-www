@@ -9,6 +9,7 @@ export interface CommentsState {
   loading: boolean,
   loaded: boolean,
   dialogOpen: boolean,
+  commentId: number | null,
   data: Comment[],
 }
 
@@ -30,15 +31,16 @@ interface FetchCommentsFailureAction {
   type: typeof FETCH_COMMENTS_FAILURE
 }
 
-export const OPEN_CREATE_COMMENT_DIALOG = "OPEN_CREATE_COMMENT_DIALOG"
-export const CLOSE_CREATE_COMMENT_DIALOG = "CLOSE_CREATE_COMMENT_DIALOG"
+export const OPEN_COMMENT_DIALOG = "OPEN_COMMENT_DIALOG"
+export const CLOSE_COMMENT_DIALOG = "CLOSE_COMMENT_DIALOG"
 
-interface OpenCreateCommentDialogAction {
-  type: typeof OPEN_CREATE_COMMENT_DIALOG
+interface OpenCommentDialogAction {
+  type: typeof OPEN_COMMENT_DIALOG,
+  id: number | null
 }
 
-interface CloseCreateCommentDialogAction {
-  type: typeof CLOSE_CREATE_COMMENT_DIALOG
+interface CloseCommentDialogAction {
+  type: typeof CLOSE_COMMENT_DIALOG
 }
 
 export const CREATE_COMMENT_REQUEST = "CREATE_COMMENT_REQUEST"
@@ -60,5 +62,25 @@ interface CreateCommentFailureAction {
   type: typeof CREATE_COMMENT_FAILURE
 }
 
+export const UPDATE_COMMENT_REQUEST = "UPDATE_COMMENT_REQUEST"
+export const UPDATE_COMMENT_SUCCESS = "UPDATE_COMMENT_SUCCESS"
+export const UPDATE_COMMENT_FAILURE = "UPDATE_COMMENT_FAILURE"
+
+export interface UpdateCommentRequestAction {
+  type: typeof UPDATE_COMMENT_REQUEST,
+  id: number,
+  name: string,
+  text: string,
+}
+
+interface UpdateCommentSuccessAction {
+  type: typeof UPDATE_COMMENT_SUCCESS
+}
+
+interface UpdateCommentFailureAction {
+  type: typeof UPDATE_COMMENT_FAILURE
+}
+
 export type CommentsActionTypes = FetchCommentsRequestAction | FetchCommentsSuccessAction | FetchCommentsFailureAction
-  | OpenCreateCommentDialogAction | CloseCreateCommentDialogAction | CreateCommentRequestAction | CreateCommentSuccessAction | CreateCommentFailureAction;
+  | OpenCommentDialogAction | CloseCommentDialogAction | CreateCommentRequestAction | CreateCommentSuccessAction
+  | CreateCommentFailureAction | UpdateCommentRequestAction | UpdateCommentSuccessAction | UpdateCommentFailureAction;

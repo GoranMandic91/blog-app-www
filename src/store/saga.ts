@@ -1,6 +1,10 @@
 import { all, call } from 'redux-saga/effects';
 import { watchFetchPostsRequest } from './posts/saga';
-import { watchCreateCommentRequest, watchFetchCommentsRequest } from './comments/saga';
+import {
+  watchCreateCommentRequest,
+  watchFetchCommentsRequest,
+  watchUpdateCommentRequest
+} from './comments/saga';
 import { watchFetchSinglePostRequest } from './post/saga';
 
 export default function* rootSaga() {
@@ -8,6 +12,7 @@ export default function* rootSaga() {
     call(watchFetchPostsRequest),
     call(watchFetchCommentsRequest),
     call(watchFetchSinglePostRequest),
-    call(watchCreateCommentRequest)
+    call(watchCreateCommentRequest),
+    call(watchUpdateCommentRequest)
   ]);
 }

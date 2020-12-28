@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchCommentsRequest, openCreateCommentDialog } from '../../store/comments/actions';
+import { fetchCommentsRequest, openCommentDialog } from '../../store/comments/actions';
 import { getComments } from '../../store/comments/selectors';
 import { fetchSinglePostRequest } from '../../store/post/actions';
 import { getPost } from '../../store/post/selectors';
@@ -15,7 +15,7 @@ const PostConnected = connect(
   (dispatch) => bindActionCreators({
     fetchPost: fetchSinglePostRequest,
     fetchComments: fetchCommentsRequest,
-    openDialog: openCreateCommentDialog
+    openDialog: openCommentDialog,
   }, dispatch),
 )(Post);
 

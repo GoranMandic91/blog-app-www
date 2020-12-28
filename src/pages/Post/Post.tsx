@@ -11,7 +11,7 @@ interface PostProps {
   comments: Comment[];
   fetchPost(id: string): SinglePostActionTypes;
   fetchComments(id: string): CommentsActionTypes;
-  openDialog(): CommentsActionTypes;
+  openDialog(id: number | null): CommentsActionTypes;
 }
 
 function Post({ post, comments, fetchPost, fetchComments, openDialog }: PostProps) {
@@ -35,7 +35,7 @@ function Post({ post, comments, fetchPost, fetchComments, openDialog }: PostProp
           title={post.title}
           content={post.content}
           hidden
-          openDialog={openDialog}
+          openDialog={() => openDialog(null)}
         />
       }
       {
@@ -45,6 +45,7 @@ function Post({ post, comments, fetchPost, fetchComments, openDialog }: PostProp
             id={comment.id}
             name={comment.name}
             text={comment.text}
+            openDialog={() => openDialog(comment.id)}
           />
         )
       }

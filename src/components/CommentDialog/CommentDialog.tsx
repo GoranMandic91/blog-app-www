@@ -5,16 +5,25 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { CommentsActionTypes } from '../../store/comments/types';
+import { Comment, CommentsActionTypes } from '../../store/comments/types';
 
 export interface CommentDialogProps {
   isOpen: boolean;
   postId: number | null;
+  comment: Comment | null;
   closeDialog(): CommentsActionTypes;
   createComment(id: number, name: string, text: string): CommentsActionTypes;
+  updateComment(id: number, name: string, text: string): CommentsActionTypes;
 }
 
-export default function CommentDialog({ isOpen, postId, closeDialog, createComment }: CommentDialogProps) {
+export default function CommentDialog({
+  isOpen,
+  postId,
+  comment,
+  closeDialog,
+  createComment,
+  updateComment
+}: CommentDialogProps) {
   const [name, setName] = useState('');
   const [text, setText] = useState('');
   const [open, setOpen] = useState(isOpen);
@@ -22,35 +31,41 @@ export default function CommentDialog({ isOpen, postId, closeDialog, createComme
 
   const handleSave = () => {
     if (postId) {
-      createComment(postId, name, text);
+      if (comment) {
+        updateComment(comment.id, name, text);
+      } else {
+        createComment(postId, name, text);
+      }
     }
     handleClose();
   };
 
   const handleClose = () => {
-    closeDialog();
     setName('');
-    setText('')
+    setText('');
+    setError(false);
+    closeDialog();
   }
 
   const handleTextChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const text = e.target.value;
-    setText(text);
+    setText(e.target.value);
     setError(!e.target.value);
   };
 
   useEffect(() => {
     setOpen(isOpen)
-  }, [isOpen]);
+    setName(comment?.name || '');
+    setText(comment?.text || '');
+  }, [isOpen, comment]);
 
   return (
     <div>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Add new comment</DialogTitle>
+        <DialogTitle id="form-dialog-title">{comment ? 'Edit comment' : 'Add comment'}</DialogTitle>
         <DialogContent>
           <form noValidate autoComplete="off">
-            <TextField id="name" label="Name" fullWidth defaultValue="" onChange={(e) => setName(e.target.value)} />
-            <TextField error={error} id="text" label="Comment" fullWidth required multiline rowsMax={8} rows={4} onChange={handleTextChange} />
+            <TextField id="name" defaultValue={comment?.name} label="Name" fullWidth onChange={(e) => setName(e.target.value)} />
+            <TextField error={error} id="text" defaultValue={comment?.text} label="Comment" fullWidth required multiline rowsMax={8} rows={4} onChange={handleTextChange} />
           </form>
         </DialogContent>
         <DialogActions>

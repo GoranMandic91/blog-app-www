@@ -2,7 +2,15 @@ import {
   FETCH_COMMENTS_FAILURE,
   FETCH_COMMENTS_REQUEST,
   FETCH_COMMENTS_SUCCESS,
-  Comment, CommentsActionTypes, OPEN_CREATE_COMMENT_DIALOG, CLOSE_CREATE_COMMENT_DIALOG, CREATE_COMMENT_REQUEST, CREATE_COMMENT_SUCCESS, CREATE_COMMENT_FAILURE
+  Comment, CommentsActionTypes,
+  OPEN_COMMENT_DIALOG,
+  CLOSE_COMMENT_DIALOG,
+  CREATE_COMMENT_REQUEST,
+  CREATE_COMMENT_SUCCESS,
+  CREATE_COMMENT_FAILURE,
+  UPDATE_COMMENT_REQUEST,
+  UPDATE_COMMENT_SUCCESS,
+  UPDATE_COMMENT_FAILURE,
 } from "./types";
 
 export function fetchCommentsRequest(id: string): CommentsActionTypes {
@@ -25,15 +33,16 @@ export function fetchCommentsFailure(): CommentsActionTypes {
   };
 }
 
-export function openCreateCommentDialog(): CommentsActionTypes {
+export function openCommentDialog(id: number | null): CommentsActionTypes {
   return {
-    type: OPEN_CREATE_COMMENT_DIALOG,
+    type: OPEN_COMMENT_DIALOG,
+    id
   };
 }
 
-export function closeCreateCommentDialog(): CommentsActionTypes {
+export function closeCommentDialog(): CommentsActionTypes {
   return {
-    type: CLOSE_CREATE_COMMENT_DIALOG,
+    type: CLOSE_COMMENT_DIALOG,
   };
 }
 
@@ -55,5 +64,26 @@ export function createCommentSuccess(): CommentsActionTypes {
 export function createCommentFailure(): CommentsActionTypes {
   return {
     type: CREATE_COMMENT_FAILURE,
+  };
+}
+
+export function updateCommentRequest(id: number, name: string, text: string): CommentsActionTypes {
+  return {
+    type: UPDATE_COMMENT_REQUEST,
+    id,
+    name,
+    text
+  };
+}
+
+export function updateCommentSuccess(): CommentsActionTypes {
+  return {
+    type: UPDATE_COMMENT_SUCCESS,
+  };
+}
+
+export function updateCommentFailure(): CommentsActionTypes {
+  return {
+    type: UPDATE_COMMENT_FAILURE,
   };
 }
