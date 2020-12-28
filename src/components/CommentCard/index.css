@@ -4,11 +4,6 @@
   background: gray;
 }
 
-.CommentCard .Content {
-  background: rgba(159, 163, 167, 0.256);
+.CommentCard .MuiCardHeader-root {
+  background: rgba(224, 232, 240, 0.256);
 }
-
-.FloatRight {
-  float: right;
-}
-

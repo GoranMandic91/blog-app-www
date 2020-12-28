@@ -3,6 +3,10 @@
   width: 800px;
 }
 
+.PostCard .PostCardHeader.MuiCardHeader-root {
+  padding-bottom: 0px;
+}
+
 .FloatRight {
   float: right;
 }
