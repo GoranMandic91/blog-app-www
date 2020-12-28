@@ -60,7 +60,7 @@ export default function CommentDialog({
 
   return (
     <div>
-      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+      <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm" aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">{comment ? 'Edit comment' : 'Add comment'}</DialogTitle>
         <DialogContent>
           <form noValidate autoComplete="off">
