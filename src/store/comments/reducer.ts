@@ -4,11 +4,14 @@ import {
   FETCH_COMMENTS_FAILURE,
   CommentsState,
   CommentsActionTypes,
+  OPEN_CREATE_COMMENT_DIALOG,
+  CLOSE_CREATE_COMMENT_DIALOG,
 } from './types';
 
 const initalState: CommentsState = {
   loading: false,
   loaded: false,
+  dialogOpen: false,
   data: [],
 };
 
@@ -31,6 +34,16 @@ export default function postsReducer(state = initalState, action: CommentsAction
         ...state,
         loading: false,
         loaded: false,
+      };
+    case OPEN_CREATE_COMMENT_DIALOG:
+      return {
+        ...state,
+        dialogOpen: true,
+      };
+    case CLOSE_CREATE_COMMENT_DIALOG:
+      return {
+        ...state,
+        dialogOpen: false,
       };
     default:
       return state;

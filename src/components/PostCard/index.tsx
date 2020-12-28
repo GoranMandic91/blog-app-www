@@ -10,6 +10,7 @@ import AddCommentOutlinedIcon from '@material-ui/icons/AddCommentOutlined';
 import './index.css';
 import { Link } from "react-router-dom";
 import IconButton from '@material-ui/core/IconButton';
+import { CommentsActionTypes } from '../../store/comments/types';
 
 interface PostCardProps {
   id: number;
@@ -17,9 +18,10 @@ interface PostCardProps {
   content: string;
   numOfComments?: number;
   hidden?: boolean;
+  openDialog?(): CommentsActionTypes;
 }
 
-export default function PostCard({ id, title, content, numOfComments, hidden }: PostCardProps) {
+export default function PostCard({ id, title, content, numOfComments, hidden, openDialog }: PostCardProps) {
   return (
     <Card className="PostCard" raised>
       <CardContent >
@@ -31,7 +33,7 @@ export default function PostCard({ id, title, content, numOfComments, hidden }: 
             </Badge>
           }
           {hidden &&
-            <IconButton className="FloatRight" color="primary" size="small">
+            <IconButton className="FloatRight" color="primary" size="small" onClick={openDialog}>
               <AddCommentOutlinedIcon />
             </IconButton>
           }

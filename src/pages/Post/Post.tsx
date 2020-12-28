@@ -11,9 +11,10 @@ interface PostProps {
   comments: Comment[];
   fetchPost(id: string): SinglePostActionTypes;
   fetchComments(id: string): CommentsActionTypes;
+  openDialog(): CommentsActionTypes;
 }
 
-function Post({ post, comments, fetchPost, fetchComments }: PostProps) {
+function Post({ post, comments, fetchPost, fetchComments, openDialog }: PostProps) {
   let { id } = useParams<{ id: string }>();
 
   useEffect(() => {
@@ -34,6 +35,7 @@ function Post({ post, comments, fetchPost, fetchComments }: PostProps) {
           title={post.title}
           content={post.content}
           hidden
+          openDialog={openDialog}
         />
       }
       {
