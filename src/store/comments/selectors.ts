@@ -1,8 +1,7 @@
 import { RootState } from "../reducers";
 
 export function getComments(state: RootState) {
-  const comments = state.comments ? state.comments.data : []
-  return comments;
+  return state.comments.data;
 }
 
 export function isDialogOpen(state: RootState) {
@@ -10,6 +9,5 @@ export function isDialogOpen(state: RootState) {
 }
 
 export function getComment(state: RootState) {
-  const comments = state.comments;
-  return comments.commentId ? comments.data.find(c => c.id === comments.commentId) || null : null;
+  return state.comments.data.find(c => c.id === state.comments.commentId) || null;
 }
