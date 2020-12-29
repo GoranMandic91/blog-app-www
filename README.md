@@ -1,38 +1,41 @@
 # blog-app-www
 Simple blog application web client
- ## Development
-
-- install node 12
-- clone the repo
-- run `npm install`
-- setup environment:
-
+## Install & run locally (Development)
+- Install node 12
+- Clone repo: `git clone git@github.com:GoranMandic91/blog-app-www.git && cd blog-app-www`
+- Run `npm install`
+- Setup environment:
   - `cp .env.example .env`
-  - update variables
   
-- start local server `npm start`
-- make sure you follow lint rules configured in the project
-
-  - check by running `npm run lint`
-  - additionally you can configure your editor of choice to do it automatically
+- Start local server `npm start`
+- Go to: `http://localhost:3000`
 
 
-## Available Scripts
+## Install & run in container (production ready)
+- Clone repo: `git clone git@github.com:GoranMandic91/blog-app-www.git && cd blog-app-www`
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-In the project directory, you can run:
+- Build docker image
+```console
+docker build -t blog-app-www .
+```
 
-### `npm start`
+- Run docker container
+```console
+docker start blog-www 2>/dev/null || \
+docker run --name blog-www \
+  -p 9090:80 \
+  -d blog-app-www:latest
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Go to: `http://localhost:9090`
 
-### `npm test`
+- Run a command in a running container
+```console
+docker exec -it blog-www sh
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Get container logs
+```console
+docker logs blog-www
+```
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
