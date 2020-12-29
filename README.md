@@ -1,12 +1,10 @@
 # blog-app-www
-Simple blog application web client
+Simple Blog Application web client
+
 ## Install & run locally (Development)
 - Install node 12
 - Clone repo: `git clone git@github.com:GoranMandic91/blog-app-www.git && cd blog-app-www`
 - Run `npm install`
-- Setup environment:
-  - `cp .env.example .env`
-  
 - Start local server `npm start`
 - Go to: `http://localhost:3000`
 
@@ -38,4 +36,3 @@ docker exec -it blog-www sh
 ```console
 docker logs blog-www
 ```
-
