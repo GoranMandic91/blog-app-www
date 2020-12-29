@@ -9,7 +9,7 @@ Simple Blog Application web client
 - Go to: `http://localhost:3000`
 
 
-## Install & run in container (production ready)
+## Install & run in container (Production ready)
 - Clone repo: `git clone git@github.com:GoranMandic91/blog-app-www.git && cd blog-app-www`
 
 - Build docker image
